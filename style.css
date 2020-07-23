@@ -1,0 +1,77 @@
+/* presets */
+body,html{
+    margin:0px;
+    padding:0px;
+    }
+    *{
+        box-sizing:border-box;
+    }
+    .menu-container{
+        height: 20px;
+        border: 1px solid;
+        display: flex;
+        justify-content: space-evenly;
+        width:200px;
+    }
+    .menu-option-container{
+        height: 60px;
+        border: 1px solid rebeccapurple;
+    }
+    .menu-options{
+        display: flex;
+        width: 279px;
+        height: 100px;
+        justify-content: space-around;
+    }
+    .formula-container{
+        height: 30px;
+        border: 1px solid green;
+    }
+    .cell-container{
+        height: calc(100vh - 130px);
+        background-color: lightgreen;
+        overflow: auto;
+        position: relative;
+    }
+    .sheets{
+        height: 20px;
+        border: 1px solid;
+    }
+    .row .cell,.top-row .cell{
+        border: 1px solid;
+        min-width: 80px;
+        /* width: 80px; */
+        text-align: center;
+        /* height: 25px; */
+         min-height: 25px; 
+         max-width:80px;  
+    }
+    .row{
+        display:flex;
+    }
+    .tl-cell{
+    height:25px;
+    width:25px;
+    background-color:green;
+    }
+    .top-row{
+    display:flex;
+    position:absolute;
+    left:25px;
+    top:0px;
+    }
+    .left-col .cell{
+        border: 1px solid;
+        width:25px;
+    height:25px;
+    background-color: green;
+    text-align: center;
+    }
+    .grid{
+        position: absolute;
+        top:25px;
+        left: 25px;
+    }
+    .menu{
+    
+    }

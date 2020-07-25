@@ -8,8 +8,19 @@
 </head>
 <body>
     
-    <div id="menu" class="menu-container">Menu Conatiner</div>
-    <div id="menu-options" class="menu-options">Menu Options</div>
+    <div id="menu-container" class="menu-container">
+
+     <div id="File" class="menu">File</div>
+     <div id="Home" class="menu">Home</div>
+    </div>
+    <div id="menu-option-container" class="menu-option-container">
+
+        <div id="File-menu-options" class="menu-options">
+            <div id="new">New</div>
+            <div id="open">Open</div>
+            <div id="save">Save</div>
+        </div>
+    </div>
     <div id="formula-container" class="formula-container">
         <input type="text" id="address-input" class="address-input">
         <input type="text" id="formula-input" class="formula-input">
@@ -36,21 +47,21 @@
                 <%}%>
         </div>
 
-        <div class="grid">
+        <div id="grid" class="grid">
         <%for(let i=0;i<rows;i++){%>
           <div class="row">
             <%for(let j=0;j<cols;j++){%>
-                <div class="cell">Cell
+                <div class="cell" contenteditable="true" rid=<%=i%> cid=<%=j%>>Cell
                 </div>
             <%}%>
           </div>
         <%}%>
     </div>
   
-</div>
-
+</ivd>
 
     <div id="sheets" class="sheets"> Sheets</div>
-    
+    <script src="script1.js"></script>
+        
 </body>
 </html>

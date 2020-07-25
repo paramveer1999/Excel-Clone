@@ -3,7 +3,6 @@ const fs=require("fs");
 const dialog=require("electron").remote.dialog;
 let db;
 
-
 $(document).ready(function(){
     $(".grid .cell").on("click",function(){
         let rowId=Number($(this).attr("rid"))+1;
@@ -57,9 +56,6 @@ $(document).ready(function(){
             }
         
         }
-
-
-
     })
     $("#save").on("click",function(){
 
@@ -67,8 +63,57 @@ $(document).ready(function(){
          let data=JSON.stringify(db);
          fs.writeFileSync(sdb,data);
          console.log("file saved");
-
-
     })
+
+
+    ////////////////////////FORMULA//////////////////////////////////////
+
+    $("#formula-input").on("blur",function(){
+
+        let formula=$(this).val();
+        
+        let cellAddress=$("#address-input").val();
+        let {rowId,colId}=getRC(cellAddress);
+        let ans=evaluate(formula);
+        //updating the ans on ui
+
+        updateCell(rowId,colId,ans);
+    })
+
+    function evaluate(formula)
+    {
+
+        //split and iterarte over the formula
+        let fcomp=formula.split(" ");
+        //[(,A1,+,A2)]
+        console.log(fcomp);
+        for(let i=0;i<fcomp.length;i++)
+        {
+            let ascii=fcomp[i].charCodeAt(0);
+            if(ascii>=65&&ascii<=90){
+                //get RC FROM getRC function
+                let {rowId,colId}=getRC(fcomp[i]);
+                //getting the value from db and replacing it with formula
+                let value=db[rowId][colId];
+                formula=formula.replace(fcomp[i],value);
+            }
+
+        }
+        let ans=eval(formula);
+        console.log(ans);
+    }
+    function getRC(cellAddress)
+    {
+        ///THIS FUNCTION IS USED TO GET THE ROWID AND COLID OF ADDRESS INPUT LIKE B1
+
+        let ascii=cellAddress.charCodeAt(0);
+        let colId=ascii-65;
+        let rowId=Number(cellAddress.substring(1))-1;
+        return {rowId,colId};
+    }
+    function updateCell(rowId,colId,ans)
+    {
+
+    }
 })
 

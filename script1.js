@@ -24,7 +24,8 @@ $(document).ready(function(){
                 let cell={
                     value:"",
                     formula:"",
-                    children:[]
+                    children:[],
+                    parents:[]
                 };
                 row.push(cell);
             }
@@ -38,6 +39,10 @@ $(document).ready(function(){
         let rowId=$(this).attr("rid");
         let colId=$(this).attr("cid");
         let value=$(this).html();
+        let cellObject=db[rowId][colId];
+        if(cellObject.formula){
+            removeFormula(cellObject,rowId,colId);
+        }
         //console.log(value);
         updateCell(rowId,colId,value);
         
@@ -82,14 +87,14 @@ $(document).ready(function(){
         let cellObject=db[rowId][colId];
         cellObject.formula=formula;
         //setup formula to add adress part into its parent children
-        setUpformula(rowId,colId,formula);
+        setUpformula(rowId,colId,formula,cellObject);
         ///////////////////////////////////////////////////////////
         let ans=evaluate(formula);
         //updating the ans on ui
 
         updateCell(rowId,colId,ans);
     })
-    function setUpformula(crowId,ccolId,formula)
+    function setUpformula(crowId,ccolId,formula,cellObject)
     {
         let fcomp=formula.split(" ");
         //[(,A1,+,A2)]
@@ -105,6 +110,10 @@ $(document).ready(function(){
                 parentObj.children.push({
                     rowId:crowId,
                     colId:ccolId
+                })
+                cellObject.parents.push({
+                    rowId:rowId,
+                    colId:colId
                 })
                 
             }
@@ -161,5 +170,25 @@ $(document).ready(function(){
          
 
     }
+    function removeFormula(cellObject,rowId,colId)
+    {
+        for(let i=0;i<cellObject.parents.length;i++)
+        {
+            let parentRc=cellObject.parents[i];
+            let parentObj=db[parentRc.rowId][parentRc.colId];
+            let newArr=parentObj.children.filter(function(elemRc){
+                return !(rowId==elemRc.rowId&&colId==elemRc.colId);
+
+            })
+            parentObj.children=newArr
+        }
+        cellObject.parents=[];
+        cellObject.formula="";
+
+    }
+    function fn(){
+        $("#new").trigger("click");
+    }
+    fn();
 })
 

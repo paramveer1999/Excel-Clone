@@ -42,11 +42,11 @@ $(document).ready(function(){
     $("#open").on("click",function(){
 
     })
-    $("#save").on("click",async function(){
+    $("#save").on("click",function(){
 
-        let sdb=await dialog.showOpenDialog();
+        let sdb=dialog.showSaveDialogSync();
          let data=JSON.stringify(db);
-         fs.writeFileSync(sdb.filePaths[0],data);
+         fs.writeFileSync(sdb,data);
          console.log("file saved");
 
 

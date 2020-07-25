@@ -21,7 +21,11 @@ $(document).ready(function(){
             for(let j=0;j<rowscol.length;j++)
             {
                 $(rowscol[j]).html("");
-                let cell="";
+                let cell={
+                    value:"",
+                    formula:"",
+                    children:[]
+                };
                 row.push(cell);
             }
             db.push(row);
@@ -31,12 +35,13 @@ $(document).ready(function(){
     $("#grid .cell").on("blur",function(){
 
         //updating entry in the database
-        let rid=$(this).attr("rid");
-        let cid=$(this).attr("cid");
+        let rowId=$(this).attr("rid");
+        let colId=$(this).attr("cid");
         let value=$(this).html();
-        console.log(value);
-        db[rid][cid]=value;
-        console.log(db);
+        //console.log(value);
+        updateCell(rowId,colId,value);
+        
+        //console.log(db);
     })
     $("#open").on("click",async function(){
         let sdb=await dialog.showOpenDialog();
@@ -50,7 +55,7 @@ $(document).ready(function(){
             let rowscol=$(allRows[i]).find(".cell");
             for(let j=0;j<rowscol.length;j++)
             {
-                $(rowscol[j]).html(db[i][j]);
+                $(rowscol[j]).html(db[i][j].value);
            
                
             }
@@ -71,18 +76,45 @@ $(document).ready(function(){
     $("#formula-input").on("blur",function(){
 
         let formula=$(this).val();
-        
+
         let cellAddress=$("#address-input").val();
         let {rowId,colId}=getRC(cellAddress);
+        let cellObject=db[rowId][colId];
+        cellObject.formula=formula;
+        //setup formula to add adress part into its parent children
+        setUpformula(rowId,colId,formula);
+        ///////////////////////////////////////////////////////////
         let ans=evaluate(formula);
         //updating the ans on ui
 
         updateCell(rowId,colId,ans);
     })
+    function setUpformula(crowId,ccolId,formula)
+    {
+        let fcomp=formula.split(" ");
+        //[(,A1,+,A2)]
+        console.log(fcomp);
+        for(let i=0;i<fcomp.length;i++)
+        {
+            let ascii=fcomp[i].charCodeAt(0);
+            if(ascii>=65&&ascii<=90){
+                //get RC FROM getRC function
+                let {rowId,colId}=getRC(fcomp[i]);
+                //getting the value from db and replacing it with formula
+                let parentObj=db[rowId][colId];
+                parentObj.children.push({
+                    rowId:crowId,
+                    colId:ccolId
+                })
+                
+            }
+
+        }
+        
+    }
 
     function evaluate(formula)
     {
-
         //split and iterarte over the formula
         let fcomp=formula.split(" ");
         //[(,A1,+,A2)]
@@ -94,13 +126,14 @@ $(document).ready(function(){
                 //get RC FROM getRC function
                 let {rowId,colId}=getRC(fcomp[i]);
                 //getting the value from db and replacing it with formula
-                let value=db[rowId][colId];
+                let value=db[rowId][colId].value;
                 formula=formula.replace(fcomp[i],value);
             }
 
         }
         let ans=eval(formula);
         console.log(ans);
+        return ans;
     }
     function getRC(cellAddress)
     {
@@ -113,6 +146,19 @@ $(document).ready(function(){
     }
     function updateCell(rowId,colId,ans)
     {
+        $(`#grid .cell[rid=${rowId}][cid=${colId}]`).html(ans);
+        let cellObject=db[rowId][colId];
+        cellObject.value=ans;
+          //updating value of children also
+        for(let i=0;i<cellObject.children.length;i++){
+            let childRc=cellObject.children[i];
+            let cObj=db[childRc.rowId][childRc.colId];
+            let cAns=evaluate(cObj.formula);
+            updateCell(childRc.rowId,childRc.colId,cAns);
+        }
+        
+      
+         
 
     }
 })

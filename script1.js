@@ -3,6 +3,7 @@ const fs=require("fs");
 const dialog=require("electron").remote.dialog;
 let db;
 
+
 $(document).ready(function(){
     $(".grid .cell").on("click",function(){
         let rowId=Number($(this).attr("rid"))+1;
@@ -38,10 +39,16 @@ $(document).ready(function(){
         db[rid][cid]=value;
         console.log(db);
     })
-    $("open").on("click",function(){
+    $("#open").on("click",function(){
 
     })
-    $("save").on("click",function(){
+    $("#save").on("click",async function(){
+
+        let sdb=await dialog.showOpenDialog();
+         let data=JSON.stringify(db);
+         fs.writeFileSync(sdb.filePaths[0],data);
+         console.log("file saved");
+
 
     })
 })

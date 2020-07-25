@@ -39,7 +39,26 @@ $(document).ready(function(){
         db[rid][cid]=value;
         console.log(db);
     })
-    $("#open").on("click",function(){
+    $("#open").on("click",async function(){
+        let sdb=await dialog.showOpenDialog();
+        let buffer=fs.readFileSync(sdb.filePaths[0]);
+        db=JSON.parse(buffer);
+        //STORING THE DATA INTO GRID BY MOVINBG INTO EACH LOOP
+        let allRows=$("#grid").find(".row");
+        for(let i=0;i<allRows.length;i++)
+        {
+            
+            let rowscol=$(allRows[i]).find(".cell");
+            for(let j=0;j<rowscol.length;j++)
+            {
+                $(rowscol[j]).html(db[i][j]);
+           
+               
+            }
+        
+        }
+
+
 
     })
     $("#save").on("click",function(){

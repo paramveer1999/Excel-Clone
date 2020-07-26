@@ -3,13 +3,60 @@ const fs=require("fs");
 const { systemPreferences } = require("electron");
 const dialog=require("electron").remote.dialog;
 let db;
+let lsc;
 
 $(document).ready(function(){
-    $(".grid .cell").on("click",function(){
-        let rowId=Number($(this).attr("rid"))+1;
-        let colId=Number($(this).attr("cid"))+65;
-        let address=String.fromCharCode(colId)+rowId;
+    $("#grid .cell").on("click",function(){
+        let rId=Number($(this).attr("rid"))+1;
+        let cId=Number($(this).attr("cid"))+65;
+        
+        let address=String.fromCharCode(cId)+rId;
+        let {rowId,colId}=getRC(address);
+        const cellObject=db[rowId][colId];
         $("#address-input").val(address);
+        lsc=this;
+        if(cellObject.bold){
+            $("#bold").addClass("active");
+        }
+        else{
+            $("#bold").removeClass("active");
+        }
+        if(cellObject.underline){
+            $("#underline").addClass("active");
+        }
+        else{
+            $("#undeline").removeClass("active");
+        }
+        if(cellObject.italic){
+            $("#italic").addClass("active");
+        }
+        else{
+            $("#italic").removeClass("active");
+        }
+    })
+    $("#underline").on("click",function(){
+        $(this).toggleClass("active");
+        let{rowId,colId}=getrcoflast(lsc);
+        let cellobject=db[rowId][colId];
+        $(lsc).css("text-decoration",cellobject.underline?"none":"underline");
+        cellobject.underline=!cellobject.underline;
+
+    })
+    $("#italic").on("click",function(){
+        $(this).toggleClass("active");
+        let{rowId,colId}=getrcoflast(lsc);
+        let cellobject=db[rowId][colId];
+        $(lsc).css("font-style",cellobject.italic?"none":"italic");
+        cellobject.italic=!cellobject.italic;
+
+    })
+    $("#bold").on("click",function(){
+        $(this).toggleClass("active");
+        let{rowId,colId}=getrcoflast(lsc);
+        let cellobject=db[rowId][colId];
+        $(lsc).css("font-weight",cellobject.bold?"normal":"bold");
+        cellobject.bold=!cellobject.bold;
+
     })
 
     //CHANGING THE HEIGHT OF ROW ACCORDING TO HIGHT OF CELL
@@ -42,12 +89,17 @@ $(document).ready(function(){
                     value:"",
                     formula:"",
                     children:[],
-                    parents:[]
+                    parents:[],
+                    bold:false,
+                    italic:false,
+                    underline:false
                 };
                 row.push(cell);
             }
             db.push(row);
         }
+        let allcells=$("#grid .cell")
+        $(allcells[0]).trigger("click");
 
     })
     $("#grid .cell").on("blur",function(){
@@ -91,8 +143,18 @@ $(document).ready(function(){
          fs.writeFileSync(sdb,data);
          console.log("file saved");
     })
+    ///clicking on file and them home
+    // $(".menu").on("click",function(){
+    //     let optionName=$(this).attr("id");
 
-
+    //     $(".menu-options").removeClass("active");
+    //     $('#${ optionName }-menu-options').addClass("active");
+    // })
+    $(".menu").on("click", function () {
+        let optionName = $(this).attr("id");
+        $(".menu-options").removeClass("active");
+        $(`#${optionName}-menu-options`).addClass("active");
+    })
     ////////////////////////FORMULA//////////////////////////////////////
 
     $("#formula-input").on("blur",function(){
@@ -203,7 +265,13 @@ $(document).ready(function(){
         cellObject.formula="";
 
     }
+    function getrcoflast(this1){
+        let rowId=$(this1).attr("rid");
+        let colId=$(this1).attr("cid");
+        return{rowId,colId};
+    }
     function fn(){
+        $("#File").trigger("click");
         $("#new").trigger("click");
     }
     fn();

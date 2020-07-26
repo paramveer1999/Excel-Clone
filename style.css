@@ -77,11 +77,21 @@ body,html{
         display: flex;
         justify-content: space-evenly;
         width: 200px;
+        height: 20px;
     }
     .menu-options{
-        display: flex;
+        display: none;
         width: 100px;
         justify-content: space-evenly;
         width: 282px;
         align-items: center;
+        height: 100%;
+        align-items: center;
+        justify-content: space-around;
+    }
+    .menu-options.active{
+        display:flex;
+    }
+    .style-row button{
+        background-color: red;
     }

@@ -1,5 +1,6 @@
 const $=require("jquery");
 const fs=require("fs");
+const { systemPreferences } = require("electron");
 const dialog=require("electron").remote.dialog;
 let db;
 
@@ -9,6 +10,22 @@ $(document).ready(function(){
         let colId=Number($(this).attr("cid"))+65;
         let address=String.fromCharCode(colId)+rowId;
         $("#address-input").val(address);
+    })
+
+    //CHANGING THE HEIGHT OF ROW ACCORDING TO HIGHT OF CELL
+    $("#grid .cell").on("keyup",function(){
+        let height1=$(this).height();
+        let myrow=$(this).attr("rid");
+        let allleftcol=$("#left-col .cell");
+        let mycol=allleftcol[myrow];
+        $(mycol).height(height1);
+    })
+    ////CHANGING THE POSITION OF LEFT COL AND TOP ROW acc to the scrolling
+    $("#cell-container").on("scroll",function(){
+        let vs=$(this).scrollTop();
+        let hz=$(this).scrollLeft();
+        $("#t1-cell,#top-row").css("top",vs);
+        $("#t1-cell,#left-col").css("left",hz);
     })
     $("#new").on("click",function(){
         db=[];

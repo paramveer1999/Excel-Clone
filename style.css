@@ -5,11 +5,7 @@ body,html{
     *{
         box-sizing:border-box;
     }
-  
-    
-    .menu-options.active{
-        display: flex;
-    }
+
     .style-row button.active{
     background-color: grey;
     }
@@ -25,7 +21,7 @@ body,html{
         position: relative;
     }
     .sheets{
-        height: 20px;
+        height: 25px;
         border: 1px solid;
     }
     .row .cell,.top-row .cell{
@@ -41,19 +37,21 @@ body,html{
         display:flex;
     }
     .tl-cell{
-    height:25px;
-    width:25px;
-    background-color:green;
-    z-index: 3;
-    position: relative;
+        position: relative;
+        width: 25px;
+        height: 25px;
+        z-index: 3;
+        background-color: black;
+        top: 0px;
+        left: 0px;
     }
     .top-row{
         display: flex;
         position: absolute;
         left: 25px;
-        top: 0px;
-       
-        background-color: #4cbd4c;
+        /* top: 0px; */
+        background-color: #bda24c;
+        z-index: 1;
     }
     .left-col .cell{
         border: 1px solid;
@@ -76,14 +74,14 @@ body,html{
     }
     .menu-container{
         border: 2px solid black;
-       display: flex;
-        
+        display: flex;
         justify-content: space-evenly;
         width: 200px;
-}
+    }
     .menu-options{
         display: flex;
         width: 100px;
-        justify-content: space-around;
+        justify-content: space-evenly;
         width: 282px;
+        align-items: center;
     }

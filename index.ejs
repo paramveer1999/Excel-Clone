@@ -20,6 +20,40 @@
             <div id="open">Open</div>
             <div id="save">Save</div>
         </div>
+        <div id="Home-menu-options" class="menu-options">
+            <div id="formatting-col">
+                <div class="font-row">
+                    <select  id="font-family">
+                        <option value="cursive">cursive</option>
+                        <option value="arial">Arial</option>
+                        <option value="sans-serif">Sans-serif</option>
+                        <option value="monospace">Monospace</option>
+                        <option value="serif">Serif</option>
+                    </select>
+                    <select  id="font-size">
+                        <option value="12">12</option>
+                        <option value="20">20</option>
+                        <option value="32">32</option>
+                        <option value="44">44</option>
+                    </select>
+                    
+                </div>
+                <div class="style-row">
+                    <button id="bold">B</button>
+                    <button id="underline">U</button>
+                    <button id="italic">I</button>
+                    <input type="color" id="b-color">
+                    <input type="color" id="font-color">
+                </div>
+            </div>
+            <div id="allign-col">
+
+                    <button id="left">L</button>
+                    <button id="center">C</button>
+                    <button id="right">R</button>
+            </div>
+    
+        </div>
     </div>
     <div id="formula-container" class="formula-container">
         <input type="text" id="address-input" class="address-input">
@@ -29,13 +63,10 @@
     <div id="cell-container" class="cell-container">
         <div id="t1-cell" class="t1-cell"></div>
         <div id="top-row" class="top-row">
-
             <%for(let i=0;i<cols;i++){%>
                 <div class="cell">
-                    <%=String.fromCharCode(i+65)%>
-                    
-                </div>
-                
+                    <%=String.fromCharCode(i+65)%>      
+                </div>  
             <%}%>
         </div>
         <div id="left-col" class="left-col">
@@ -51,7 +82,7 @@
         <%for(let i=0;i<rows;i++){%>
           <div class="row">
             <%for(let j=0;j<cols;j++){%>
-                <div class="cell" contenteditable="true" rid=<%=i%> cid=<%=j%>>Cell
+                <div class="cell" contenteditable="true" rid=<%=i%> cid=<%=j%>>
                 </div>
             <%}%>
           </div>
@@ -60,7 +91,7 @@
   
 </ivd>
 
-    <div id="sheets" class="sheets"> Sheets</div>
+    <div id="sheets" class="sheets"> </div>
     <script src="script1.js"></script>
         
 </body>

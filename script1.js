@@ -46,7 +46,7 @@ $(document).ready(function(){
         $(this).toggleClass("active");
         let{rowId,colId}=getrcoflast(lsc);
         let cellobject=db[rowId][colId];
-        $(lsc).css("font-style",cellobject.italic?"none":"italic");
+        $(lsc).css("font-style",cellobject.italic?"normal":"italic");
         cellobject.italic=!cellobject.italic;
 
     })
@@ -243,10 +243,7 @@ $(document).ready(function(){
             let cObj=db[childRc.rowId][childRc.colId];
             let cAns=evaluate(cObj.formula);
             updateCell(childRc.rowId,childRc.colId,cAns);
-        }
-        
-      
-         
+        }   
 
     }
     function removeFormula(cellObject,rowId,colId)
@@ -271,7 +268,7 @@ $(document).ready(function(){
         return{rowId,colId};
     }
     function fn(){
-        $("#File").trigger("click");
+        $("#Home").trigger("click");
         $("#new").trigger("click");
     }
     fn();

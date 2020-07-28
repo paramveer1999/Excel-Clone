@@ -562,7 +562,7 @@ $(document).ready(function () {
         updateCell(rowId, colId, ans);
     })
 
-
+ 
     function evaluate(formula) {
         // Split and iterate over formula
         // ( A1 + A2 )

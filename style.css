@@ -102,7 +102,8 @@ body,html{
         justify-content: space-around;
     }
     .menu-option-container{
-        height: 94px;
+        height: 121px;
+        background-color: darkgray;
     }
     .menu-options.active{
     
@@ -146,12 +147,64 @@ body,html{
     #formatting-col.Home .style-row{
           
         margin-left: 203px;
-   
         margin-bottom: 12px;
         margin-top: -17px;
-        height: 35px;
+        height: 38px;
+        width: 28px;
+    
     }
     #formatting-col.Home .colors{
         margin-left: 197px;
         width: 45%;
     }
+    .style-row #underline{
+        font-size: 21px;
+        margin-top: -45px;
+        margin-left:33px;
+        text-transform: uppercase;
+        -webkit-text-stroke-width: thick;
+
+    }
+    .style-row #bold{
+        font-size: 21px;
+        margin-top: inherit;
+        text-transform: uppercase;
+        -webkit-text-stroke-width: thick;
+    }
+    .style-row #italic{
+        font-size: 21px;
+        margin-top: inherit;
+        text-transform: uppercase;
+        -webkit-text-stroke-width: thick;
+        margin-left: 62px;
+        margin-top: -47px;
+
+    }
+    .colors #a{
+        text-transform: uppercase;
+    -webkit-text-stroke-width: thick;
+    font-size: 2px;
+    margin-top: -11px;
+    margin-bottom: 5px;
+    margin-left: 10px;
+    width: 22px;
+    font-size: 21px;
+}
+    
+  
+    .colors #b-color,#font-color{
+        margin-top: -6px;
+        height: 28px;
+    }
+    #paint{
+        text-transform: uppercase;
+        -webkit-text-stroke-width: thick;
+        
+        
+        margin-left: 257px;
+        margin-bottom: -26px;
+    margin-top: -12px;
+        width: 22px;
+        font-size: 21px;
+    }
+

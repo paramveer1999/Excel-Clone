@@ -43,6 +43,7 @@ $(document).ready(function(){
 
     })
     $("#italic").on("click",function(){
+       
         $(this).toggleClass("active");
         let{rowId,colId}=getrcoflast(lsc);
         let cellobject=db[rowId][colId];

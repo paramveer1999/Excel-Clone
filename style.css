@@ -190,8 +190,12 @@ body,html{
     width: 22px;
     font-size: 21px;
 }
-    
-  
+    .colors #b-color{
+        background: crimson;
+    }
+    .colors #font-color{
+        background: chartreuse;
+    }
     .colors #b-color,#font-color{
         margin-top: -6px;
         height: 28px;
@@ -207,4 +211,29 @@ body,html{
         width: 22px;
         font-size: 21px;
     }
+    #alli-1{
+        margin-left: 359px;
+        /* margin-top: 19px; */
+        margin-top: -50px;
+    }
+    #alli-2{
+        margin-left: 409px;
+        margin-top: 23px;
+
+    }
+    #alli-3{
+        margin-left: 458px;
+        margin-bottom: -57px;
+        margin-top: -101px;
+    
+    }
+    #ar{
+        font-size: 17px;
+        margin-left: 375px;
+        
+        
+        margin-bottom: -1px;
+        margin-top: -15px;
+    }
+    
 

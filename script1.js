@@ -34,6 +34,55 @@ $(document).ready(function(){
             $("#italic").removeClass("active");
         }
     })
+    //FONT-FAMILY
+    $("#font-family").on("change",function(){
+        let ffam=$(this).val();
+        let{rowId,colId}=getrcoflast(lsc);
+        let cellobject=db[rowId][colId];
+        $(lsc).css("font-family",ffam);
+        cellobject.fontFamily=ffam;
+        // ////////////////////chnging the height of row also/////////////////
+        let height1=$(lsc).height();
+        console.log(height1);
+        let myrow=$(lsc).attr("rid");
+        let allleftcol=$("#left-col .cell");
+        let mycol=allleftcol[myrow];
+        $(mycol).height(height1);
+    })
+    //FONT-SIZE
+    $("#font-size").on("change",function(){
+        let fsize=$(this).val();
+        let {rowId,colId}=getrcoflast(lsc);
+        let cellobject=db[rowId][colId];
+        $(lsc).css("font-size",fsize+"px");
+        cellobject.fontsize=fsize;
+
+    
+        // ////////////////////chnging the height of row also/////////////////
+        let height1=$(lsc).height();
+        console.log(height1);
+        let myrow=$(lsc).attr("rid");
+        let allleftcol=$("#left-col .cell");
+        let mycol=allleftcol[myrow];
+        $(mycol).height(height1);
+
+    })
+    //background-color
+    $("#b-color").on("change",function(){
+        let bcolor=$(this).val();
+        let{rowId,colId}=getrcoflast(lsc);
+        let cellobject=db[rowId][colId];
+        $(lsc).css("background-color",bcolor);
+        cellobject.bcolor=bcolor;
+    })
+    //Font-color
+    $("#font-color").on("change",function(){
+        let color=$(this).val();
+        let{rowId,colId}=getrcoflast(lsc);
+        let cellobject=db[rowId][colId];
+        $(lsc).css("color",color);
+        cellobject.color=color;
+    })
     $("#underline").on("click",function(){
         $(this).toggleClass("active");
         let{rowId,colId}=getrcoflast(lsc);
@@ -57,6 +106,13 @@ $(document).ready(function(){
         let cellobject=db[rowId][colId];
         $(lsc).css("font-weight",cellobject.bold?"normal":"bold");
         cellobject.bold=!cellobject.bold;
+        // ////////////////////chnging the height of row also/////////////////
+        let height1=$(lsc).height();
+        console.log(height1);
+        let myrow=$(lsc).attr("rid");
+        let allleftcol=$("#left-col .cell");
+        let mycol=allleftcol[myrow];
+        $(mycol).height(height1);
 
     })
 
@@ -93,7 +149,11 @@ $(document).ready(function(){
                     parents:[],
                     bold:false,
                     italic:false,
-                    underline:false
+                    underline:false,
+                    fontFamily:"arial",
+                    color:"black",
+                    bcolor:"white",
+                    fontsize:12
                 };
                 row.push(cell);
             }
@@ -130,9 +190,22 @@ $(document).ready(function(){
             let rowscol=$(allRows[i]).find(".cell");
             for(let j=0;j<rowscol.length;j++)
             {
-                $(rowscol[j]).html(db[i][j].value);
-           
-               
+                let cellobject=db[i][j];
+                $(rowscol[j]).html(cellobject.value);
+                    // bold:false,
+                    // italic:false,
+                    // underline:false,
+                    // fontFamily:"arial",
+                    // color:"black",
+                    // bcolor:"white",
+                    // fontsize:12
+                $(rowscol[j]).css("bold",cellobject.bold ?"bold":"normal");
+                $(rowscol[j]).css("font-style",cellobject.italic ?"italic":"normal");
+                $(rowscol[j]).css("text-decoration",cellobject.underline ?"underline": "none");
+                $(rowscol[j]).css("font-family",cellobject.fontFamily);
+                $(rowscol[j]).css("background-color",cellobject.bcolor);
+                $(rowscol[j]).css("color",cellobject.color);
+
             }
         
         }

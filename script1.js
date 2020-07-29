@@ -19,7 +19,9 @@ $(document).ready(function(){
             $("#bold").addClass("active");
         }
         else{
+            $("#bold").css("background-color","darkgray");
             $("#bold").removeClass("active");
+
         }
         if(cellObject.underline){
             $("#underline").addClass("active");
@@ -100,12 +102,39 @@ $(document).ready(function(){
         cellobject.italic=!cellobject.italic;
 
     })
-    $("#bold").on("click",function(){
+    $("#alli-1").on("click",function(){
         $(this).toggleClass("active");
         let{rowId,colId}=getrcoflast(lsc);
         let cellobject=db[rowId][colId];
+        
+        $(lsc).css("text-align","left");
+        cellobject.leftalign=!cellobject.leftalign;
+    })
+    $("#alli-2").on("click",function(){
+        $(this).toggleClass("active");
+        let{rowId,colId}=getrcoflast(lsc);
+        let cellobject=db[rowId][colId];
+       
+        $(lsc).css("text-align","center");
+        cellobject.center=!cellobject.center;
+    })
+    $("#alli-3").on("click",function(){
+        $(this).toggleClass("active");
+        let{rowId,colId}=getrcoflast(lsc);
+        let cellobject=db[rowId][colId];
+        $(lsc).css("text-align","right");
+        cellobject.rightalign=!cellobject.rightalign;
+    })
+
+    $("#bold").on("click",function(){
+        $(this).toggleClass("active");
+       
+        let{rowId,colId}=getrcoflast(lsc);
+        let cellobject=db[rowId][colId];
+        $(this).css("background-color",cellobject.bold?"darkgray":"floralwhite");
         $(lsc).css("font-weight",cellobject.bold?"normal":"bold");
         cellobject.bold=!cellobject.bold;
+       
         // ////////////////////chnging the height of row also/////////////////
         let height1=$(lsc).height();
         console.log(height1);
@@ -150,6 +179,9 @@ $(document).ready(function(){
                     bold:false,
                     italic:false,
                     underline:false,
+                    leftalign:false,
+                    rightalign:false,
+                    center:false,
                     fontFamily:"arial",
                     color:"black",
                     bcolor:"white",
@@ -205,6 +237,9 @@ $(document).ready(function(){
                 $(rowscol[j]).css("font-family",cellobject.fontFamily);
                 $(rowscol[j]).css("background-color",cellobject.bcolor);
                 $(rowscol[j]).css("color",cellobject.color);
+                $(rowscol[j]).css("text-align",cellobject.center?"center":"none");
+                $(rowscol[j]).css("text-align",cellobject.right?"right":"none");
+                $(rowscol[j]).css("text-align",cellobject.leftalign?"left-align":"none");
 
             }
         

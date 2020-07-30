@@ -4,6 +4,8 @@ const { systemPreferences } = require("electron");
 const dialog=require("electron").remote.dialog;
 let db;
 let lsc;
+let copy;
+let cut;
 
 $(document).ready(function(){
     $("#grid .cell").on("click",function(){
@@ -50,6 +52,39 @@ $(document).ready(function(){
         let allleftcol=$("#left-col .cell");
         let mycol=allleftcol[myrow];
         $(mycol).height(height1);
+    })
+    $("#copy").on("click",function(){
+       copy=$(lsc).html();
+       cut="";
+    })
+    $("#cut").on("click",function(){
+        cut=$(lsc).html();
+            copy="";
+            let {rowId,colId}=getrcoflast(lsc);
+            let cellObject=db[rowId][colId];
+            if(cellObject.formula){
+                removeFormula(cellObject,rowId,colId);
+            }
+            $(`#grid .cell[rid=${rowId}][cid=${colId}]`).html("");
+            //change left col height
+            $(lsc).keyup();
+    })
+    $("#paste").on("click",function(){
+        paste=cut?cut:copy
+        $(lsc).html=paste;
+        if(!cut&&!copy){
+            return;
+        }
+        
+        let {rowId,colId}=getrcoflast(lsc);
+        let cellObject=db[rowId][colId];
+        if(cellObject.formula){
+            removeFormula(cellObject,rowId,colId);
+        }
+        updateCell(rowId,colId,paste)
+        paste=""
+        cut=""
+        copy=""
     })
     //FONT-SIZE
     $("#font-size").on("change",function(){

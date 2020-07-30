@@ -237,12 +237,30 @@ body,html{
         margin-top: -15px;
     }
     #paste{
-        margin-top: 79px;
-        margin-left: 554px;
-        margin-bottom: 2px;
-        margin-top: -54px;
-        margin-bottom: 28px;
+        margin-left: 748px;
+        margin-bottom: 27px;
+        margin-top: -46px;
     
+    
+    }
+    #cut{
+        margin-left: 595px;
+    margin-bottom: 26px;
+    margin-top: -64px;
+
+    }
+    #copy{
+       
+    margin-left: 675px;
+    margin-bottom: 26px;
+    margin-top: -64px;
+
+        
     }
     
 
+#clip{
+    font-size: 18px;
+    margin-left: 636px;
+    margin-top: 51px;
+}

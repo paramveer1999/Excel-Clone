@@ -91,6 +91,7 @@ body,html{
         background-color: green;
         
     }
+
     .menu-options{
         display: none;
         width: 100px;
@@ -102,13 +103,14 @@ body,html{
         justify-content: space-around;
     }
     .menu-option-container{
-        height: 121px;
+        height: 130px;
         background-color: darkgray;
     }
     .menu-options.active{
     
-        height: 49px;
+        height: 100%;
         display: flex;
+        width: 100%;
     }
     .style-row button{
         background-color: red;
@@ -132,27 +134,15 @@ body,html{
     
     }
     #formatting-col.Home{
-        width: 100%;
-        height: 100%;
-        top: 100%;
+        margin-top: 26px;
+        margin-left: -8rem;
+        border-right: 3px solid black;
+        height: 121%;
+        padding-right: 2rem;
     }
-    #formatting-col.Home .font-row{
-        left: 0px;
-        justify-content: space-around;
-        width: 52%;
-        margin-top: 12px;
-        margin-left: 7px;
+   
 
-    }
-    #formatting-col.Home .style-row{
-          
-        margin-left: 203px;
-        margin-bottom: 12px;
-        margin-top: -17px;
-        height: 38px;
-        width: 28px;
     
-    }
     #formatting-col.Home .colors{
         margin-left: 197px;
         width: 45%;
@@ -160,7 +150,7 @@ body,html{
     .style-row #underline{
         font-size: 21px;
         margin-top: -45px;
-        margin-left:33px;
+        margin-left:38px;
         text-transform: uppercase;
         -webkit-text-stroke-width: thick;
 
@@ -176,91 +166,110 @@ body,html{
         margin-top: inherit;
         text-transform: uppercase;
         -webkit-text-stroke-width: thick;
-        margin-left: 62px;
+        margin-left: 71px;
         margin-top: -47px;
 
     }
-    .colors #a{
-        text-transform: uppercase;
-    -webkit-text-stroke-width: thick;
-    font-size: 2px;
-    margin-top: -11px;
-    margin-bottom: 5px;
-    margin-left: 10px;
-    width: 22px;
-    font-size: 21px;
-}
-    .colors #b-color{
+    
+     #b-color{
+         height: 28px;
+         margin-right: 7px;
         background: crimson;
     }
-    .colors #font-color{
+    #font-family{
+        margin-top: 14px;
+    }
+    #font-color{
+        margin-top: 11px;
+        height: 28px;
         background: chartreuse;
     }
-    .colors #b-color,#font-color{
-        margin-top: -6px;
-        height: 28px;
-    }
+   
     #paint{
-        text-transform: uppercase;
-        -webkit-text-stroke-width: thick;
-        
-        
-        margin-left: 257px;
-        margin-bottom: -26px;
-    margin-top: -12px;
-        width: 22px;
-        font-size: 21px;
+        width: 33px;
+        margin-left: 65px;
+        margin-bottom: -39px;
+        margin-top: -12px;
     }
     #alli-1{
-        margin-left: 359px;
-        /* margin-top: 19px; */
-        margin-top: -50px;
+        width: 35px;
+        margin-left: -63px;
+        margin-top: -52px;
     }
     #alli-2{
-        margin-left: 409px;
-        margin-top: 23px;
+        width: 35px;
+        margin-top: 136px;
 
 
     }
     #alli-3{
-        margin-left: 458px;
-        margin-bottom: -57px;
-        margin-top: -101px;
-    
+        width: 35px;
+    margin-bottom: -172px;
+    margin-top: -122px;
+    margin-left: 62px;
     }
     #ar{
-        font-size: 17px;
-        margin-left: 375px;
-        
-        
-        margin-bottom: -1px;
-        margin-top: -15px;
+        font-size: 18px;
+    width: 82px;
+    margin-top: 99px;
+    margin-left: -22px;
     }
     #paste{
-        margin-left: 748px;
-        margin-bottom: 27px;
-        margin-top: -46px;
+        height: 45px;
+        margin-left: -10px;
     
     
     }
     #cut{
-        margin-left: 595px;
-    margin-bottom: 26px;
-    margin-top: -64px;
+        height: 35px;
+        padding-left: 29px;
 
     }
     #copy{
        
-    margin-left: 675px;
-    margin-bottom: 26px;
-    margin-top: -64px;
-
+        height: 35px;
+        padding-left: 22px;
         
     }
     
 
 #clip{
+    margin-left: -34px;
     font-size: 18px;
-    margin-left: 636px;
-    margin-top: 51px;
+    margin-top: auto;
+}
+.secondpart{
+    height: 100%;
+    margin-left: -14rem;
+    border-right: 3px solid black;
+    padding-left: 1rem;
+    padding-right: 1rem;
+}
+.style-row{
+    margin-top: 13px;
+}
+.style-color{
+    width: 109px;
+}
+#a{
+    font-size: 22px;
+   
+    margin-bottom: 0rem;
+    margin-left: 15px;
+    margin-top: 6px;
+}
+.thirdpart{
+    height: 100%;
+    margin-left: -13rem;
+    border-right: 3px solid black;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    width: 150px;
+}
+#clipboard{
+    height: 100%;
+    display: flex;
+    justify-content: space-evenly;
+    margin-left: -15rem;
+    border-right: 3px solid black;
 }

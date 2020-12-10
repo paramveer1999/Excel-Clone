@@ -1,0 +1,19 @@
+{
+  "name": "activity",
+  "version": "1.0.0",
+  "main": "main.js",
+  "dependencies": {
+    "ejs-electron": "^2.0.3",
+    "electron": "^9.1.0",
+    "jquery": "^3.5.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "electron ."
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": ""
+}
